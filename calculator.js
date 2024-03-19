@@ -1,5 +1,5 @@
+let shownNum = 0;
 let total = 0;
-let nums = [];
 
 const totalNumber = document.getElementById("total");
 const clearButton = document.getElementById("clear");
@@ -33,18 +33,18 @@ numberButtons.forEach(button => {
 
 operationButtons.forEach(button => {
     button.addEventListener('click', ()=>{
-        nums.push(totalNumber.textContent);
-        total = 0;
+        totalNumber.innerHTML = total;
+        shownNum = 0;
     });
 });
 
 let changeNumber = (x) =>{
-    total *= 10;
-    total += x;
-    totalNumber.innerHTML = total;
+    shownNum *= 10;
+    shownNum += x;
+    totalNumber.innerHTML = shownNum;
 }
 
 let resetNumber = () => {
-    total = 0;
+    shownNum = 0;
     totalNumber.innerHTML = 0;
 }
