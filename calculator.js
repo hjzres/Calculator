@@ -40,9 +40,12 @@ operationButtons.forEach(button => {
         shownNum = 0;
         if(operationToUse != null){
             operationToUse();
-            totalNumber.innerHTML = total;
             operationToUse = null;
+        } else{
+            total += parseInt(totalNumber.textContent);
         }
+        totalNumber.innerHTML = total;
+        console.log(total);
     });
 });
 
@@ -64,18 +67,22 @@ divideButton.addEventListener('click', ()=>{
 
 let addNum = ()=>{
     total += parseInt(totalNumber.textContent);
+    console.log("added");
 }
 
 let subtractNum = ()=>{
     total -= parseInt(totalNumber.textContent);
+    console.log("subtract");
 }
 
 let multiplyNum = ()=>{
     total *= parseInt(totalNumber.textContent);
+    console.log("multiplied");
 }
 
 let divideNum = ()=>{
     total /= parseInt(totalNumber.textContent);
+    console.log("divided");
 }
 
 let changeNumber = (x) =>{
