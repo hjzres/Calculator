@@ -2,6 +2,8 @@ let shownNum = 0;
 let total = 0;
 let operationToUse;
 
+let isNegative = false;
+
 const zeroButton = document.getElementById("zero");
 const oneButton = document.getElementById('one');
 const twoButton = document.getElementById("two");
@@ -44,6 +46,7 @@ operationButtons.forEach(button => {
         } else{
             total += parseInt(totalNumber.textContent);
         }
+        isNegative = false;
         totalNumber.innerHTML = total;
         console.log(total);
     });
@@ -65,33 +68,51 @@ divideButton.addEventListener('click', ()=>{
     operationToUse = divideNum;
 });
 
-let addNum = ()=>{
+equalButton.addEventListener('click', () => {
+    operationToUse = null;
+});
+
+clearButton.addEventListener('click', () => {
+    resetNumber();
+});
+
+negativeButton.addEventListener('click', () => {
+    shownNum *= -1;
+    totalNumber.innerHTML = shownNum;
+    isNegative = !isNegative;
+})
+
+let addNum = () => {
     total += parseInt(totalNumber.textContent);
     console.log("added");
 }
 
-let subtractNum = ()=>{
+let subtractNum = () => {
     total -= parseInt(totalNumber.textContent);
     console.log("subtract");
 }
 
-let multiplyNum = ()=>{
+let multiplyNum = () => {
     total *= parseInt(totalNumber.textContent);
     console.log("multiplied");
 }
 
-let divideNum = ()=>{
+let divideNum = () => {
     total /= parseInt(totalNumber.textContent);
     console.log("divided");
 }
 
 let changeNumber = (x) =>{
     shownNum *= 10;
-    shownNum += x;
+    if(!isNegative)
+        shownNum += x;
+    else
+        shownNum -= x;
     totalNumber.innerHTML = shownNum;
 }
 
 let resetNumber = () => {
     shownNum = 0;
     totalNumber.innerHTML = 0;
+    total = 0;
 }
