@@ -4,6 +4,7 @@ let operationToUse;
 
 let isNegative = false;
 let isDecimal = false;
+let isFirstNum = true;
 let decimalPart = 0.1;
 
 const zeroButton = document.getElementById("zero");
@@ -51,8 +52,9 @@ operationButtons.forEach(button => {
         if(operationToUse != null){
             operationToUse();
             operationToUse = null;
-        } else{
+        } else if(isFirstNum){
             total += parseFloat(totalNumber.textContent);
+            isFirstNum = false;
         }
         isNegative = false;
         isDecimal = false;
@@ -149,4 +151,5 @@ let resetNumber = () => {
     decimalPart = 0.1;
     isNegative = false;
     isDecimal = false;
+    isFirstNum = true;
 }
