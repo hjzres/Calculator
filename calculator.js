@@ -3,6 +3,8 @@ let total = 0;
 let operationToUse;
 
 let isNegative = false;
+let isDecimal = false;
+let decimalPart = 0.1;
 
 const zeroButton = document.getElementById("zero");
 const oneButton = document.getElementById('one');
@@ -32,9 +34,15 @@ const numberButtons = document.querySelectorAll('.number');
 const operationButtons = document.querySelectorAll('.operation');
 
 numberButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        changeNumber(parseInt(button.textContent));
-    });
+    if(button != decimalButton){
+        button.addEventListener('click', () => {
+            if(!isDecimal){
+                changeNumber(parseFloat(button.textContent));
+            } else {
+                changeDecimal(parseFloat(button.textContent));
+            }
+        });
+    }
 });
 
 operationButtons.forEach(button => {
@@ -44,12 +52,20 @@ operationButtons.forEach(button => {
             operationToUse();
             operationToUse = null;
         } else{
-            total += parseInt(totalNumber.textContent);
+            total += parseFloat(totalNumber.textContent);
         }
         isNegative = false;
+        isDecimal = false;
+        decimalPart = 0.1;
         totalNumber.innerHTML = total;
         console.log(total);
     });
+});
+
+decimalButton.addEventListener('click', () => {
+    if(!isDecimal)
+    totalNumber.innerHTML += '.';
+    isDecimal = true;
 });
 
 addButton.addEventListener('click', ()=>{
@@ -88,12 +104,12 @@ negativeButton.addEventListener('click', () => {
 })
 
 let addNum = () => {
-    total += parseInt(totalNumber.textContent);
+    total += parseFloat(totalNumber.textContent);
     console.log("added");
 }
 
 let subtractNum = () => {
-    total -= parseInt(totalNumber.textContent);
+    total -= parseFloat(totalNumber.textContent);
     console.log("subtract");
 }
 
@@ -103,7 +119,7 @@ let multiplyNum = () => {
 }
 
 let divideNum = () => {
-    total /= parseInt(totalNumber.textContent);
+    total /= parseFloat(totalNumber.textContent);
     console.log("divided");
 }
 
@@ -116,8 +132,21 @@ let changeNumber = (x) =>{
     totalNumber.innerHTML = shownNum;
 }
 
+let changeDecimal = (x) => {
+    if(!isNegative){
+        shownNum += (x * decimalPart);
+    } else {
+        shownNum -= (x * decimalPart);
+    }
+    decimalPart *= 0.1;
+    totalNumber.innerHTML = shownNum;
+}
+
 let resetNumber = () => {
     shownNum = 0;
     totalNumber.innerHTML = 0;
     total = 0;
+    decimalPart = 0.1;
+    isNegative = false;
+    isDecimal = false;
 }
