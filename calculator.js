@@ -76,6 +76,11 @@ clearButton.addEventListener('click', () => {
     resetNumber();
 });
 
+percentButton.addEventListener('click', () => {
+    shownNum /= 100;
+    totalNumber.innerHTML = shownNum;
+})
+
 negativeButton.addEventListener('click', () => {
     shownNum *= -1;
     totalNumber.innerHTML = shownNum;
