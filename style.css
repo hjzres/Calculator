@@ -37,7 +37,7 @@ button{
 }
 
 .function:hover{
-    background-color: rgb(233, 233, 233);
+    background-color: rgb(215, 208, 208);
 }
 
 .number:hover{
@@ -46,4 +46,16 @@ button{
 
 .operation:hover{
     background-color: rgb(214, 191, 148);
+}
+
+.function:active {
+    background-color: rgb(255, 255, 255);
+}
+
+.number:active{
+    background-color: rgb(177, 179, 182);
+}
+
+.operation:active{
+    background-color: rgb(232, 223, 207);
 }
