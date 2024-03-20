@@ -141,7 +141,7 @@ let changeDecimal = (x) => {
         shownNum -= (x * decimalPart);
     }
     decimalPart *= 0.1;
-    totalNumber.innerHTML = shownNum;
+    totalNumber.innerHTML += x;
 }
 
 let resetNumber = () => {
